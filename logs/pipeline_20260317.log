@@ -1,0 +1,341 @@
+2026-03-17 17:25:04,603 | INFO | root | Logger initialized
+2026-03-17 17:25:08,595 | INFO | root | Logger initialized
+2026-03-17 17:25:08,621 | INFO | pipeline | Pipeline started
+2026-03-17 17:25:08,621 | INFO | pipeline | Registering datasets
+2026-03-17 17:25:08,623 | INFO | register_dataset | Registering dataset: NOAA Drifting Buoy - Korean Waters
+2026-03-17 17:25:08,971 | INFO | register_dataset | NOAA Drifting Buoy - Korean Waters registered with dataset_id=7
+2026-03-17 17:25:08,971 | INFO | register_dataset | Registering dataset: NOAA NDBC Station 51001 - NW Hawaii
+2026-03-17 17:25:09,050 | INFO | register_dataset | NOAA NDBC Station 51001 - NW Hawaii registered with dataset_id=8
+2026-03-17 17:25:09,053 | INFO | register_dataset | Registering dataset: ATAL JAL Disclosed Ground Water Level India 2015-2022
+2026-03-17 17:25:09,126 | INFO | register_dataset | ATAL JAL Disclosed Ground Water Level India 2015-2022 registered with dataset_id=9
+2026-03-17 17:25:09,129 | INFO | register_dataset | Registering dataset: Fishing Vessels v3
+2026-03-17 17:25:09,204 | INFO | register_dataset | Fishing Vessels v3 registered with dataset_id=10
+2026-03-17 17:25:09,207 | INFO | pipeline | Starting normalization stage
+2026-03-17 17:25:09,207 | INFO | pipeline | 
+--- Drifting Buoy ---
+2026-03-17 17:25:10,875 | INFO | normalize_drifting_buoy | 1091 drifting buoy signals inserted
+2026-03-17 17:25:10,880 | INFO | pipeline | 
+--- Meteorological Buoy 51001 ---
+2026-03-17 17:25:10,880 | INFO | normalize_met_buoy | Loading meteorological buoy file: data_raw\meteorological_buoy_data.csv
+2026-03-17 17:25:10,920 | INFO | normalize_met_buoy |   Raw rows loaded: 6507
+2026-03-17 17:25:10,926 | INFO | normalize_met_buoy |   Dropping fully-empty columns: ['visibility', 'tide']
+2026-03-17 17:25:11,524 | INFO | normalize_met_buoy |   Signals prepared: 6507
+2026-03-17 17:25:16,431 | INFO | normalize_met_buoy |   Inserted 6507 signals from meteorological buoy 51001.
+2026-03-17 17:25:16,438 | INFO | pipeline | 
+--- ATAL JAL Groundwater ---
+2026-03-17 17:25:16,438 | INFO | normalize_groundwater | Loading groundwater file: data_raw\Atal_Jal_Disclosed_Ground_Water_Level-2015-2022.csv
+2026-03-17 17:25:16,485 | INFO | normalize_groundwater |   Raw rows (wells) loaded: 5490
+2026-03-17 17:25:16,485 | INFO | normalize_groundwater |   Seasonal columns found: 16
+2026-03-17 17:25:16,523 | INFO | normalize_groundwater |   Rows after melt (well  season): 87840
+2026-03-17 17:25:24,108 | INFO | normalize_groundwater |   Signals prepared : 87840
+2026-03-17 17:25:24,108 | INFO | normalize_groundwater |   Skipped (no coords)    : 0
+2026-03-17 17:25:24,108 | INFO | normalize_groundwater |   Skipped (no timestamp) : 0
+2026-03-17 17:26:27,488 | INFO | normalize_groundwater |  Inserted 87840 signals from groundwater dataset.
+2026-03-17 17:26:27,518 | INFO | pipeline | 
+--- Fishing Vessels ---
+2026-03-17 18:02:35,680 | INFO | root | Logger initialized
+2026-03-17 18:02:36,878 | INFO | root | Logger initialized
+2026-03-17 18:02:36,898 | INFO | pipeline | Pipeline started
+2026-03-17 18:02:36,901 | INFO | pipeline | Registering datasets
+2026-03-17 18:02:36,901 | INFO | register_dataset | Registering dataset: NOAA Drifting Buoy - Korean Waters
+2026-03-17 18:02:37,093 | INFO | register_dataset | NOAA Drifting Buoy - Korean Waters registered with dataset_id=11
+2026-03-17 18:02:37,093 | INFO | register_dataset | Registering dataset: NOAA NDBC Station 51001 - NW Hawaii
+2026-03-17 18:02:37,276 | INFO | register_dataset | NOAA NDBC Station 51001 - NW Hawaii registered with dataset_id=12
+2026-03-17 18:02:37,291 | INFO | register_dataset | Registering dataset: ATAL JAL Disclosed Ground Water Level India 2015-2022
+2026-03-17 18:02:37,380 | INFO | register_dataset | ATAL JAL Disclosed Ground Water Level India 2015-2022 registered with dataset_id=13
+2026-03-17 18:02:37,382 | INFO | register_dataset | Registering dataset: Fishing Vessels v3
+2026-03-17 18:02:37,460 | INFO | register_dataset | Fishing Vessels v3 registered with dataset_id=14
+2026-03-17 18:02:37,467 | INFO | pipeline | Starting normalization stage
+2026-03-17 18:02:37,467 | INFO | pipeline | 
+--- Drifting Buoy ---
+2026-03-17 18:02:38,599 | INFO | normalize_drifting_buoy | 1091 drifting buoy signals inserted
+2026-03-17 18:02:38,599 | INFO | pipeline | 
+--- Meteorological Buoy 51001 ---
+2026-03-17 18:02:38,601 | INFO | normalize_met_buoy | Loading meteorological buoy file: data_raw\meteorological_buoy_data.csv
+2026-03-17 18:02:38,609 | INFO | normalize_met_buoy |   Raw rows loaded: 6507
+2026-03-17 18:02:38,620 | INFO | normalize_met_buoy |   Dropping fully-empty columns: ['visibility', 'tide']
+2026-03-17 18:02:39,023 | INFO | normalize_met_buoy |   Signals prepared: 6507
+2026-03-17 18:02:44,737 | INFO | normalize_met_buoy |   Inserted 6507 signals from meteorological buoy 51001.
+2026-03-17 18:02:44,742 | INFO | pipeline | 
+--- ATAL JAL Groundwater ---
+2026-03-17 18:02:44,742 | INFO | normalize_groundwater | Loading groundwater file: data_raw\Atal_Jal_Disclosed_Ground_Water_Level-2015-2022.csv
+2026-03-17 18:02:44,783 | INFO | normalize_groundwater |   Raw rows (wells) loaded: 5490
+2026-03-17 18:02:44,783 | INFO | normalize_groundwater |   Seasonal columns found: 16
+2026-03-17 18:02:44,817 | INFO | normalize_groundwater |   Rows after melt (well  season): 87840
+2026-03-17 18:02:51,811 | INFO | normalize_groundwater |   Signals prepared : 87840
+2026-03-17 18:02:51,811 | INFO | normalize_groundwater |   Skipped (no coords)    : 0
+2026-03-17 18:02:51,811 | INFO | normalize_groundwater |   Skipped (no timestamp) : 0
+2026-03-17 18:04:06,056 | INFO | normalize_groundwater |  Inserted 87840 signals from groundwater dataset.
+2026-03-17 18:04:06,084 | INFO | pipeline | 
+--- Fishing Vessels ---
+2026-03-17 18:08:59,238 | INFO | root | Logger initialized
+2026-03-17 18:09:02,416 | INFO | root | Logger initialized
+2026-03-17 18:09:02,416 | INFO | pipeline | Pipeline started
+2026-03-17 18:09:02,416 | INFO | pipeline | Registering datasets
+2026-03-17 18:09:02,434 | INFO | register_dataset | Registering dataset: NOAA Drifting Buoy - Korean Waters
+2026-03-17 18:09:02,699 | INFO | register_dataset | NOAA Drifting Buoy - Korean Waters registered with dataset_id=15
+2026-03-17 18:09:02,705 | INFO | register_dataset | Registering dataset: NOAA NDBC Station 51001 - NW Hawaii
+2026-03-17 18:09:02,780 | INFO | register_dataset | NOAA NDBC Station 51001 - NW Hawaii registered with dataset_id=16
+2026-03-17 18:09:02,781 | INFO | register_dataset | Registering dataset: ATAL JAL Disclosed Ground Water Level India 2015-2022
+2026-03-17 18:09:02,856 | INFO | register_dataset | ATAL JAL Disclosed Ground Water Level India 2015-2022 registered with dataset_id=17
+2026-03-17 18:09:02,856 | INFO | register_dataset | Registering dataset: Fishing Vessels v3
+2026-03-17 18:09:02,925 | INFO | register_dataset | Fishing Vessels v3 registered with dataset_id=18
+2026-03-17 18:09:02,925 | INFO | pipeline | Starting normalization stage
+2026-03-17 18:09:02,925 | INFO | pipeline | 
+--- Drifting Buoy ---
+2026-03-17 18:09:03,998 | INFO | normalize_drifting_buoy | 1091 drifting buoy signals inserted
+2026-03-17 18:09:04,001 | INFO | pipeline | 
+--- Meteorological Buoy 51001 ---
+2026-03-17 18:09:04,001 | INFO | normalize_met_buoy | Loading meteorological buoy file: data_raw\meteorological_buoy_data.csv
+2026-03-17 18:09:04,031 | INFO | normalize_met_buoy |   Raw rows loaded: 6507
+2026-03-17 18:09:04,034 | INFO | normalize_met_buoy |   Dropping fully-empty columns: ['visibility', 'tide']
+2026-03-17 18:09:04,425 | INFO | normalize_met_buoy |   Signals prepared: 6507
+2026-03-17 18:09:09,993 | INFO | normalize_met_buoy |   Inserted 6507 signals from meteorological buoy 51001.
+2026-03-17 18:09:09,997 | INFO | pipeline | 
+--- ATAL JAL Groundwater ---
+2026-03-17 18:09:09,997 | INFO | normalize_groundwater | Loading groundwater file: data_raw\Atal_Jal_Disclosed_Ground_Water_Level-2015-2022.csv
+2026-03-17 18:09:10,043 | INFO | normalize_groundwater |   Raw rows (wells) loaded: 5490
+2026-03-17 18:09:10,044 | INFO | normalize_groundwater |   Seasonal columns found: 16
+2026-03-17 18:09:10,075 | INFO | normalize_groundwater |   Rows after melt (well  season): 87840
+2026-03-17 18:09:16,482 | INFO | normalize_groundwater |   Signals prepared : 87840
+2026-03-17 18:09:16,482 | INFO | normalize_groundwater |   Skipped (no coords)    : 0
+2026-03-17 18:09:16,482 | INFO | normalize_groundwater |   Skipped (no timestamp) : 0
+2026-03-17 18:10:18,950 | INFO | normalize_groundwater |  Inserted 87840 signals from groundwater dataset.
+2026-03-17 18:10:18,977 | INFO | pipeline | 
+--- Fishing Vessels ---
+2026-03-17 18:10:54,287 | INFO | normalize_fishing_vessels | 0 fishing vessel signals inserted
+2026-03-17 18:10:54,444 | INFO | pipeline | Total signals inserted: 95438
+2026-03-17 18:37:09,292 | INFO | root | Logger initialized
+2026-03-17 18:37:10,339 | INFO | root | Logger initialized
+2026-03-17 18:37:10,379 | INFO | pipeline | Pipeline started
+2026-03-17 18:37:10,381 | INFO | pipeline | Registering datasets
+2026-03-17 18:37:10,381 | INFO | register_dataset | Registering dataset: NOAA Drifting Buoy - Korean Waters
+2026-03-17 18:37:10,553 | INFO | register_dataset | NOAA Drifting Buoy - Korean Waters registered with dataset_id=19
+2026-03-17 18:37:10,553 | INFO | register_dataset | Registering dataset: NOAA NDBC Station 51001 - NW Hawaii
+2026-03-17 18:37:10,634 | INFO | register_dataset | NOAA NDBC Station 51001 - NW Hawaii registered with dataset_id=20
+2026-03-17 18:37:10,634 | INFO | register_dataset | Registering dataset: ATAL JAL Disclosed Ground Water Level India 2015-2022
+2026-03-17 18:37:10,812 | INFO | register_dataset | ATAL JAL Disclosed Ground Water Level India 2015-2022 registered with dataset_id=21
+2026-03-17 18:37:10,812 | INFO | register_dataset | Registering dataset: Fishing Vessels v3
+2026-03-17 18:37:10,886 | INFO | register_dataset | Fishing Vessels v3 registered with dataset_id=22
+2026-03-17 18:37:10,886 | INFO | pipeline | Starting normalization stage
+2026-03-17 18:37:10,889 | INFO | pipeline | 
+--- Drifting Buoy ---
+2026-03-17 18:37:12,049 | INFO | normalize_drifting_buoy | 1091 drifting buoy signals inserted
+2026-03-17 18:37:12,049 | INFO | pipeline | 
+--- Meteorological Buoy 51001 ---
+2026-03-17 18:37:12,049 | INFO | normalize_met_buoy | Loading meteorological buoy file: data_raw\meteorological_buoy_data.csv
+2026-03-17 18:37:12,066 | INFO | normalize_met_buoy |   Raw rows loaded: 6507
+2026-03-17 18:37:12,069 | INFO | normalize_met_buoy |   Dropping fully-empty columns: ['visibility', 'tide']
+2026-03-17 18:37:12,495 | INFO | normalize_met_buoy |   Signals prepared: 6507
+2026-03-17 18:37:17,958 | INFO | normalize_met_buoy |   Inserted 6507 signals from meteorological buoy 51001.
+2026-03-17 18:37:17,961 | INFO | pipeline | 
+--- ATAL JAL Groundwater ---
+2026-03-17 18:37:17,963 | INFO | normalize_groundwater | Loading groundwater file: data_raw\Atal_Jal_Disclosed_Ground_Water_Level-2015-2022.csv
+2026-03-17 18:37:17,995 | INFO | normalize_groundwater |   Raw rows (wells) loaded: 5490
+2026-03-17 18:37:17,995 | INFO | normalize_groundwater |   Seasonal columns found: 16
+2026-03-17 18:37:18,030 | INFO | normalize_groundwater |   Rows after melt (well  season): 87840
+2026-03-17 18:37:24,474 | INFO | normalize_groundwater |   Signals prepared : 87840
+2026-03-17 18:37:24,475 | INFO | normalize_groundwater |   Skipped (no coords)    : 0
+2026-03-17 18:37:24,475 | INFO | normalize_groundwater |   Skipped (no timestamp) : 0
+2026-03-17 18:38:29,613 | INFO | normalize_groundwater |  Inserted 87840 signals from groundwater dataset.
+2026-03-17 18:38:29,640 | INFO | pipeline | 
+--- Fishing Vessels ---
+2026-03-17 18:38:57,282 | INFO | normalize_fishing_vessels | 0 fishing vessel signals inserted
+2026-03-17 18:38:57,430 | INFO | pipeline | Total signals inserted: 95438
+2026-03-17 18:43:04,108 | INFO | root | Logger initialized
+2026-03-17 18:43:05,235 | INFO | root | Logger initialized
+2026-03-17 18:43:05,247 | INFO | pipeline | Pipeline started
+2026-03-17 18:43:05,248 | INFO | pipeline | Registering datasets
+2026-03-17 18:43:05,248 | INFO | register_dataset | Registering dataset: NOAA Drifting Buoy - Korean Waters
+2026-03-17 18:43:05,452 | INFO | register_dataset | NOAA Drifting Buoy - Korean Waters registered with dataset_id=23
+2026-03-17 18:43:05,454 | INFO | register_dataset | Registering dataset: NOAA NDBC Station 51001 - NW Hawaii
+2026-03-17 18:43:05,532 | INFO | register_dataset | NOAA NDBC Station 51001 - NW Hawaii registered with dataset_id=24
+2026-03-17 18:43:05,532 | INFO | register_dataset | Registering dataset: ATAL JAL Disclosed Ground Water Level India 2015-2022
+2026-03-17 18:43:05,615 | INFO | register_dataset | ATAL JAL Disclosed Ground Water Level India 2015-2022 registered with dataset_id=25
+2026-03-17 18:43:05,615 | INFO | pipeline | Starting normalization stage
+2026-03-17 18:43:05,615 | INFO | pipeline | 
+--- Drifting Buoy ---
+2026-03-17 18:43:06,656 | INFO | normalize_drifting_buoy | 1091 drifting buoy signals inserted
+2026-03-17 18:43:06,656 | INFO | pipeline | 
+--- Meteorological Buoy 51001 ---
+2026-03-17 18:43:06,656 | INFO | normalize_met_buoy | Loading meteorological buoy file: data_raw\meteorological_buoy_data.csv
+2026-03-17 18:43:06,667 | INFO | normalize_met_buoy |   Raw rows loaded: 6507
+2026-03-17 18:43:06,677 | INFO | normalize_met_buoy |   Dropping fully-empty columns: ['visibility', 'tide']
+2026-03-17 18:43:07,082 | INFO | normalize_met_buoy |   Signals prepared: 6507
+2026-03-17 18:43:11,480 | INFO | normalize_met_buoy |   Inserted 6507 signals from meteorological buoy 51001.
+2026-03-17 18:43:11,494 | INFO | pipeline | 
+--- ATAL JAL Groundwater ---
+2026-03-17 18:43:11,495 | INFO | normalize_groundwater | Loading groundwater file: data_raw\Atal_Jal_Disclosed_Ground_Water_Level-2015-2022.csv
+2026-03-17 18:43:11,521 | INFO | normalize_groundwater |   Raw rows (wells) loaded: 5490
+2026-03-17 18:43:11,528 | INFO | normalize_groundwater |   Seasonal columns found: 16
+2026-03-17 18:43:11,553 | INFO | normalize_groundwater |   Rows after melt (well  season): 87840
+2026-03-17 18:43:17,574 | INFO | normalize_groundwater |   Signals prepared : 87840
+2026-03-17 18:43:17,574 | INFO | normalize_groundwater |   Skipped (no coords)    : 0
+2026-03-17 18:43:17,574 | INFO | normalize_groundwater |   Skipped (no timestamp) : 0
+2026-03-17 18:44:16,300 | INFO | normalize_groundwater |  Inserted 87840 signals from groundwater dataset.
+2026-03-17 18:44:16,329 | INFO | pipeline | Total signals inserted: 95438
+2026-03-17 19:02:39,767 | INFO | root | Logger initialized
+2026-03-17 19:02:40,904 | INFO | pipeline | Pipeline started
+2026-03-17 19:02:40,904 | INFO | pipeline | Registering datasets
+2026-03-17 19:02:40,904 | INFO | register_dataset | Registering dataset: NOAA Drifting Buoy - Korean Waters
+2026-03-17 19:02:41,076 | INFO | register_dataset | NOAA Drifting Buoy - Korean Waters registered with dataset_id=26
+2026-03-17 19:02:41,076 | INFO | register_dataset | Registering dataset: NOAA NDBC Station 51001 - NW Hawaii
+2026-03-17 19:02:41,165 | INFO | register_dataset | NOAA NDBC Station 51001 - NW Hawaii registered with dataset_id=27
+2026-03-17 19:02:41,165 | INFO | register_dataset | Registering dataset: ATAL JAL Disclosed Ground Water Level India 2015-2022
+2026-03-17 19:02:41,243 | INFO | register_dataset | ATAL JAL Disclosed Ground Water Level India 2015-2022 registered with dataset_id=28
+2026-03-17 19:02:41,243 | INFO | pipeline | Starting normalization stage
+2026-03-17 19:02:41,243 | INFO | pipeline | 
+--- Drifting Buoy ---
+2026-03-17 19:02:42,237 | INFO | normalize_drifting_buoy | 1091 drifting buoy signals inserted
+2026-03-17 19:02:42,237 | INFO | pipeline | 
+--- Meteorological Buoy 51001 ---
+2026-03-17 19:02:42,240 | INFO | normalize_met_buoy | Loading meteorological buoy file: data_raw\meteorological_buoy_data.csv
+2026-03-17 19:02:42,252 | INFO | normalize_met_buoy |   Raw rows loaded: 6507
+2026-03-17 19:02:42,260 | INFO | normalize_met_buoy |   Dropping fully-empty columns: ['visibility', 'tide']
+2026-03-17 19:02:42,630 | INFO | normalize_met_buoy |   Signals prepared: 6507
+2026-03-17 19:02:47,209 | INFO | normalize_met_buoy |   Inserted 6507 signals from meteorological buoy 51001.
+2026-03-17 19:02:47,209 | INFO | pipeline | 
+--- ATAL JAL Groundwater ---
+2026-03-17 19:02:47,209 | INFO | normalize_groundwater | Loading groundwater file: data_raw\Atal_Jal_Disclosed_Ground_Water_Level-2015-2022.csv
+2026-03-17 19:02:47,244 | INFO | normalize_groundwater |   Raw rows (wells) loaded: 5490
+2026-03-17 19:02:47,244 | INFO | normalize_groundwater |   Seasonal columns found: 16
+2026-03-17 19:02:47,274 | INFO | normalize_groundwater |   Rows after melt (well  season): 87840
+2026-03-17 19:02:53,224 | INFO | normalize_groundwater |   Signals prepared : 87840
+2026-03-17 19:02:53,224 | INFO | normalize_groundwater |   Skipped (no coords)    : 0
+2026-03-17 19:02:53,224 | INFO | normalize_groundwater |   Skipped (no timestamp) : 0
+2026-03-17 19:03:48,641 | INFO | normalize_groundwater |  Inserted 87840 signals from groundwater dataset.
+2026-03-17 19:03:48,668 | INFO | pipeline | Total signals inserted: 95438
+2026-03-17 19:50:28,141 | INFO | root | Logger initialized
+2026-03-17 19:50:29,447 | INFO | pipeline | Pipeline started
+2026-03-17 19:50:29,447 | INFO | pipeline | Registering datasets
+2026-03-17 19:50:29,448 | INFO | register_dataset | Registering dataset: NOAA Drifting Buoy - Korean Waters
+2026-03-17 19:50:29,684 | INFO | register_dataset | NOAA Drifting Buoy - Korean Waters registered with dataset_id=29
+2026-03-17 19:50:29,685 | INFO | register_dataset | Registering dataset: NOAA NDBC Station 51001 - NW Hawaii
+2026-03-17 19:50:29,788 | INFO | register_dataset | NOAA NDBC Station 51001 - NW Hawaii registered with dataset_id=30
+2026-03-17 19:50:29,789 | INFO | register_dataset | Registering dataset: ATAL JAL Disclosed Ground Water Level India 2015-2022
+2026-03-17 19:50:29,886 | INFO | register_dataset | ATAL JAL Disclosed Ground Water Level India 2015-2022 registered with dataset_id=31
+2026-03-17 19:50:29,888 | INFO | pipeline | Starting normalization stage
+2026-03-17 19:50:29,888 | INFO | pipeline | 
+--- Drifting Buoy ---
+2026-03-17 19:50:31,470 | INFO | normalize_drifting_buoy | 1091 drifting buoy signals inserted
+2026-03-17 19:50:31,471 | INFO | pipeline | 
+--- Meteorological Buoy 51001 ---
+2026-03-17 19:50:31,471 | INFO | normalize_met_buoy | Loading meteorological buoy file: data_raw\meteorological_buoy_data.csv
+2026-03-17 19:50:31,492 | INFO | normalize_met_buoy |   Raw rows loaded: 6507
+2026-03-17 19:50:31,499 | INFO | normalize_met_buoy |   Dropping fully-empty columns: ['visibility', 'tide']
+2026-03-17 19:50:32,085 | INFO | normalize_met_buoy |   Signals prepared: 6507
+2026-03-17 19:50:41,555 | INFO | normalize_met_buoy |   Inserted 6507 signals from meteorological buoy 51001.
+2026-03-17 19:50:41,558 | INFO | pipeline | 
+--- ATAL JAL Groundwater ---
+2026-03-17 19:50:41,558 | INFO | normalize_groundwater | Loading groundwater file: data_raw\Atal_Jal_Disclosed_Ground_Water_Level-2015-2022.csv
+2026-03-17 19:50:41,618 | INFO | normalize_groundwater |   Raw rows (wells) loaded: 5490
+2026-03-17 19:50:41,618 | INFO | normalize_groundwater |   Seasonal columns found: 16
+2026-03-17 19:50:41,672 | INFO | normalize_groundwater |   Rows after melt (well  season): 87840
+2026-03-17 19:50:51,811 | INFO | normalize_groundwater |   Signals prepared : 87840
+2026-03-17 19:50:51,811 | INFO | normalize_groundwater |   Skipped (no coords)    : 0
+2026-03-17 19:50:51,811 | INFO | normalize_groundwater |   Skipped (no timestamp) : 0
+2026-03-17 19:52:40,073 | INFO | normalize_groundwater |  Inserted 87840 signals from groundwater dataset.
+2026-03-17 19:52:40,112 | INFO | pipeline | Total signals inserted: 95438
+2026-03-17 19:56:40,469 | INFO | root | Logger initialized
+2026-03-17 19:56:41,533 | INFO | pipeline | Pipeline started
+2026-03-17 19:56:41,534 | INFO | pipeline | Registering datasets
+2026-03-17 19:56:41,534 | INFO | register_dataset | Registering dataset: NOAA Drifting Buoy - Korean Waters
+2026-03-17 19:56:41,753 | INFO | register_dataset | NOAA Drifting Buoy - Korean Waters registered with dataset_id=32
+2026-03-17 19:56:41,755 | INFO | register_dataset | Registering dataset: NOAA NDBC Station 51001 - NW Hawaii
+2026-03-17 19:56:41,848 | INFO | register_dataset | NOAA NDBC Station 51001 - NW Hawaii registered with dataset_id=33
+2026-03-17 19:56:41,849 | INFO | register_dataset | Registering dataset: ATAL JAL Disclosed Ground Water Level India 2015-2022
+2026-03-17 19:56:41,944 | INFO | register_dataset | ATAL JAL Disclosed Ground Water Level India 2015-2022 registered with dataset_id=34
+2026-03-17 19:56:41,945 | INFO | pipeline | Starting normalization stage
+2026-03-17 19:56:41,945 | INFO | pipeline | 
+--- Drifting Buoy ---
+2026-03-17 19:56:43,468 | INFO | normalize_drifting_buoy | 1091 drifting buoy signals inserted
+2026-03-17 19:56:43,469 | INFO | pipeline | 
+--- Meteorological Buoy 51001 ---
+2026-03-17 19:56:43,470 | INFO | normalize_met_buoy | Loading meteorological buoy file: data_raw\meteorological_buoy_data.csv
+2026-03-17 19:56:43,513 | INFO | normalize_met_buoy |   Raw rows loaded: 6507
+2026-03-17 19:56:43,518 | INFO | normalize_met_buoy |   Dropping fully-empty columns: ['visibility', 'tide']
+2026-03-17 19:56:44,130 | INFO | normalize_met_buoy |   Signals prepared: 6507
+2026-03-17 19:56:51,475 | INFO | normalize_met_buoy |   Inserted 6507 signals from meteorological buoy 51001.
+2026-03-17 19:56:51,479 | INFO | pipeline | 
+--- ATAL JAL Groundwater ---
+2026-03-17 19:56:51,479 | INFO | normalize_groundwater | Loading groundwater file: data_raw\Atal_Jal_Disclosed_Ground_Water_Level-2015-2022.csv
+2026-03-17 19:56:51,542 | INFO | normalize_groundwater |   Raw rows (wells) loaded: 5490
+2026-03-17 19:56:51,542 | INFO | normalize_groundwater |   Seasonal columns found: 16
+2026-03-17 19:56:51,600 | INFO | normalize_groundwater |   Rows after melt (well  season): 87840
+2026-03-17 19:57:00,680 | INFO | normalize_groundwater |   Signals prepared : 87840
+2026-03-17 19:57:00,681 | INFO | normalize_groundwater |   Skipped (no coords)    : 0
+2026-03-17 19:57:00,683 | INFO | normalize_groundwater |   Skipped (no timestamp) : 0
+2026-03-17 19:58:41,864 | INFO | normalize_groundwater |  Inserted 87840 signals from groundwater dataset.
+2026-03-17 19:58:41,888 | INFO | pipeline | Total signals inserted: 95438
+2026-03-17 20:12:29,071 | INFO | root | Logger initialized
+2026-03-17 20:12:30,127 | INFO | pipeline | Pipeline started
+2026-03-17 20:12:30,127 | INFO | pipeline | Registering datasets
+2026-03-17 20:12:30,127 | INFO | register_dataset | Registering dataset: NOAA Drifting Buoy - Korean Waters
+2026-03-17 20:12:30,361 | INFO | register_dataset | NOAA Drifting Buoy - Korean Waters registered with dataset_id=35
+2026-03-17 20:12:30,361 | INFO | register_dataset | Registering dataset: NOAA NDBC Station 51001 - NW Hawaii
+2026-03-17 20:12:30,453 | INFO | register_dataset | NOAA NDBC Station 51001 - NW Hawaii registered with dataset_id=36
+2026-03-17 20:12:30,453 | INFO | register_dataset | Registering dataset: ATAL JAL Disclosed Ground Water Level India 2015-2022
+2026-03-17 20:12:30,539 | INFO | register_dataset | ATAL JAL Disclosed Ground Water Level India 2015-2022 registered with dataset_id=37
+2026-03-17 20:12:30,539 | INFO | pipeline | Starting normalization stage
+2026-03-17 20:12:30,539 | INFO | pipeline | 
+--- Drifting Buoy ---
+2026-03-17 20:12:30,544 | INFO | normalize_drifting_buoy | Loading drifting buoy file: data_raw\drifting_buoy_data.csv
+2026-03-17 20:12:30,553 | INFO | normalize_drifting_buoy |   Raw rows loaded: 1091
+2026-03-17 20:12:30,673 | INFO | normalize_drifting_buoy |   Signals prepared : 1091
+2026-03-17 20:12:30,673 | INFO | normalize_drifting_buoy |   Skipped (no timestamp) : 0
+2026-03-17 20:12:30,673 | INFO | normalize_drifting_buoy |   Skipped (no coords)    : 0
+2026-03-17 20:12:31,930 | INFO | normalize_drifting_buoy |   Inserted 1091 signals from drifting buoy dataset.
+2026-03-17 20:12:31,930 | INFO | pipeline | 
+--- Meteorological Buoy 51001 ---
+2026-03-17 20:12:31,930 | INFO | normalize_met_buoy | Loading meteorological buoy file: data_raw\meteorological_buoy_data.csv
+2026-03-17 20:12:31,945 | INFO | normalize_met_buoy |   Raw rows loaded: 6507
+2026-03-17 20:12:31,968 | INFO | normalize_met_buoy |   Dropping fully-empty columns: ['visibility', 'tide']
+2026-03-17 20:12:32,568 | INFO | normalize_met_buoy |   Signals prepared: 6507
+2026-03-17 20:12:39,917 | INFO | normalize_met_buoy |   Inserted 6507 signals from meteorological buoy 51001.
+2026-03-17 20:12:39,917 | INFO | pipeline | 
+--- ATAL JAL Groundwater ---
+2026-03-17 20:12:39,917 | INFO | normalize_groundwater | Loading groundwater file: data_raw\Atal_Jal_Disclosed_Ground_Water_Level-2015-2022.csv
+2026-03-17 20:12:39,969 | INFO | normalize_groundwater |   Raw rows (wells) loaded: 5490
+2026-03-17 20:12:39,969 | INFO | normalize_groundwater |   Seasonal columns found: 16
+2026-03-17 20:12:40,012 | INFO | normalize_groundwater |   Rows after melt (well  season): 87840
+2026-03-17 20:12:50,148 | INFO | normalize_groundwater |   Signals prepared : 87840
+2026-03-17 20:12:50,148 | INFO | normalize_groundwater |   Skipped (no coords)    : 0
+2026-03-17 20:12:50,148 | INFO | normalize_groundwater |   Skipped (no timestamp) : 0
+2026-03-17 20:14:28,493 | INFO | normalize_groundwater |  Inserted 87840 signals from groundwater dataset.
+2026-03-17 20:14:28,535 | INFO | pipeline | Total signals inserted: 95438
+2026-03-17 20:21:28,040 | INFO | root | Logger initialized
+2026-03-17 20:21:31,967 | INFO | pipeline | Pipeline started
+2026-03-17 20:21:31,967 | INFO | pipeline | Registering datasets
+2026-03-17 20:21:31,967 | INFO | register_dataset | Registering dataset: NOAA Drifting Buoy - Korean Waters
+2026-03-17 20:21:32,201 | INFO | register_dataset | NOAA Drifting Buoy - Korean Waters registered with dataset_id=38
+2026-03-17 20:21:32,202 | INFO | register_dataset | Registering dataset: NOAA NDBC Station 51001 - NW Hawaii
+2026-03-17 20:21:32,272 | INFO | register_dataset | NOAA NDBC Station 51001 - NW Hawaii registered with dataset_id=39
+2026-03-17 20:21:32,273 | INFO | register_dataset | Registering dataset: ATAL JAL Disclosed Ground Water Level India 2015-2022
+2026-03-17 20:21:32,444 | INFO | register_dataset | ATAL JAL Disclosed Ground Water Level India 2015-2022 registered with dataset_id=40
+2026-03-17 20:21:32,445 | INFO | pipeline | Starting normalization stage
+2026-03-17 20:21:32,445 | INFO | pipeline | 
+--- Drifting Buoy ---
+2026-03-17 20:21:32,445 | INFO | normalize_drifting_buoy | Loading drifting buoy file: data_raw\drifting_buoy_data.csv
+2026-03-17 20:21:32,465 | INFO | normalize_drifting_buoy |   Raw rows loaded: 1091
+2026-03-17 20:21:32,544 | INFO | normalize_drifting_buoy |   Signals prepared : 1091
+2026-03-17 20:21:32,544 | INFO | normalize_drifting_buoy |   Skipped (no timestamp) : 0
+2026-03-17 20:21:32,544 | INFO | normalize_drifting_buoy |   Skipped (no coords)    : 0
+2026-03-17 20:21:34,425 | INFO | normalize_drifting_buoy |   Inserted 1091 signals from drifting buoy dataset.
+2026-03-17 20:21:34,426 | INFO | pipeline | 
+--- Meteorological Buoy 51001 ---
+2026-03-17 20:21:34,427 | INFO | normalize_met_buoy | Loading meteorological buoy file: data_raw\meteorological_buoy_data.csv
+2026-03-17 20:21:34,452 | INFO | normalize_met_buoy |   Raw rows loaded: 6507
+2026-03-17 20:21:34,454 | INFO | normalize_met_buoy |   Dropping fully-empty columns: ['visibility', 'tide']
+2026-03-17 20:21:34,767 | INFO | normalize_met_buoy |   Signals prepared: 6507
+2026-03-17 20:21:40,869 | INFO | normalize_met_buoy |   Inserted 6507 signals from meteorological buoy 51001.
+2026-03-17 20:21:40,872 | INFO | pipeline | 
+--- ATAL JAL Groundwater ---
+2026-03-17 20:21:40,873 | INFO | normalize_groundwater | Loading groundwater file: data_raw\Atal_Jal_Disclosed_Ground_Water_Level-2015-2022.csv
+2026-03-17 20:21:40,927 | INFO | normalize_groundwater |   Raw rows (wells) loaded: 5490
+2026-03-17 20:21:40,927 | INFO | normalize_groundwater |   Seasonal columns found: 16
+2026-03-17 20:21:40,962 | INFO | normalize_groundwater |   Rows after melt (well  season): 87840
+2026-03-17 20:21:46,333 | INFO | normalize_groundwater |   Signals prepared : 87840
+2026-03-17 20:21:46,333 | INFO | normalize_groundwater |   Skipped (no coords)    : 0
+2026-03-17 20:21:46,333 | INFO | normalize_groundwater |   Skipped (no timestamp) : 0
+2026-03-17 20:23:16,293 | INFO | normalize_groundwater |  Inserted 87840 signals from groundwater dataset.
+2026-03-17 20:23:16,323 | INFO | pipeline | Total signals inserted: 95438

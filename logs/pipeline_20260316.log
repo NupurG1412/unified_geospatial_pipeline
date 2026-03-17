@@ -1,0 +1,74 @@
+2026-03-16 15:10:06,118 | INFO | pipeline | ============================================================
+2026-03-16 15:10:06,118 | INFO | pipeline |   Unified Geospatial Signal Intelligence Pipeline
+2026-03-16 15:10:06,118 | INFO | pipeline | ============================================================
+2026-03-16 15:10:06,118 | INFO | pipeline | 
+[STEP 1] Registering datasets in dataset_registry...
+2026-03-16 15:10:06,516 | INFO | pipeline | 
+[STEP 2] Normalizing and inserting datasets...
+2026-03-16 15:10:06,516 | INFO | pipeline | 
+--- Drifting Buoy ---
+2026-03-16 15:10:06,516 | INFO | normalize_drifting_buoy | Loading drifting buoy file: C:\unified_geospatial_pipeline\src\..\data_raw\drifting_buoy_data.csv
+2026-03-16 15:10:06,534 | INFO | normalize_drifting_buoy |   Raw rows loaded: 1091
+2026-03-16 15:10:06,622 | INFO | normalize_drifting_buoy |   Signals prepared: 1091
+2026-03-16 15:10:07,687 | INFO | pipeline | 
+--- Meteorological Buoy 51001 ---
+2026-03-16 15:10:07,687 | INFO | normalize_met_buoy | Loading meteorological buoy file: C:\unified_geospatial_pipeline\src\..\data_raw\meteorological_buoy_data.csv
+2026-03-16 15:10:07,716 | INFO | normalize_met_buoy |   Raw rows loaded: 6507
+2026-03-16 15:10:07,718 | INFO | normalize_met_buoy |   Dropping fully-empty columns: ['visibility', 'tide']
+2026-03-16 15:10:08,128 | INFO | normalize_met_buoy |   Signals prepared: 6507
+2026-03-16 15:10:14,244 | INFO | pipeline | 
+--- ATAL JAL Groundwater ---
+2026-03-16 15:10:14,244 | INFO | normalize_groundwater | Loading groundwater file: C:\unified_geospatial_pipeline\src\..\data_raw\Atal_Jal_Disclosed_Ground_Water_Level-2015-2022.csv
+2026-03-16 15:10:14,318 | INFO | normalize_groundwater |   Raw rows (wells) loaded: 5490
+2026-03-16 15:10:14,318 | INFO | normalize_groundwater |   Seasonal columns found: 16
+2026-03-16 15:10:14,349 | INFO | normalize_groundwater |   Rows after melt (well � season): 87840
+2026-03-16 15:10:21,123 | INFO | normalize_groundwater |   Signals prepared : 87840
+2026-03-16 15:10:21,123 | INFO | normalize_groundwater |   Skipped (no coords)    : 0
+2026-03-16 15:10:21,123 | INFO | normalize_groundwater |   Skipped (no timestamp) : 0
+2026-03-16 15:11:45,517 | INFO | pipeline | 
+============================================================
+2026-03-16 15:11:45,517 | INFO | pipeline |   PIPELINE COMPLETE � SUMMARY
+2026-03-16 15:11:45,517 | INFO | pipeline | ============================================================
+2026-03-16 15:11:45,526 | INFO | pipeline | ============================================================
+2026-03-16 15:27:25,533 | INFO | pipeline | ============================================================
+2026-03-16 15:27:25,533 | INFO | pipeline |   Unified Geospatial Signal Intelligence Pipeline
+2026-03-16 15:27:25,533 | INFO | pipeline | ============================================================
+2026-03-16 15:27:25,533 | INFO | pipeline | 
+[STEP 1] Registering datasets in dataset_registry...
+2026-03-16 15:27:25,692 | INFO | register_dataset | Registered dataset: 'NOAA Drifting Buoy - Korean Waters' → dataset_id=4
+2026-03-16 15:27:25,761 | INFO | register_dataset | Registered dataset: 'NOAA NDBC Station 51001 - NW Hawaii' → dataset_id=5
+2026-03-16 15:27:25,827 | INFO | register_dataset | Registered dataset: 'ATAL JAL Disclosed Ground Water Level India 2015-2022' → dataset_id=6
+2026-03-16 15:27:25,827 | INFO | pipeline | 
+[STEP 2] Normalizing and inserting datasets...
+2026-03-16 15:27:25,827 | INFO | pipeline | 
+--- Drifting Buoy ---
+2026-03-16 15:27:25,827 | INFO | normalize_drifting_buoy | Loading drifting buoy file: C:\unified_geospatial_pipeline\src\..\data_raw\drifting_buoy_data.csv
+2026-03-16 15:27:25,841 | INFO | normalize_drifting_buoy |   Raw rows loaded: 1091
+2026-03-16 15:27:25,930 | INFO | normalize_drifting_buoy |   Signals prepared: 1091
+2026-03-16 15:27:27,049 | INFO | normalize_drifting_buoy |   ✅ Inserted 1091 signals from drifting buoy.
+2026-03-16 15:27:27,049 | INFO | pipeline | 
+--- Meteorological Buoy 51001 ---
+2026-03-16 15:27:27,049 | INFO | normalize_met_buoy | Loading meteorological buoy file: C:\unified_geospatial_pipeline\src\..\data_raw\meteorological_buoy_data.csv
+2026-03-16 15:27:27,066 | INFO | normalize_met_buoy |   Raw rows loaded: 6507
+2026-03-16 15:27:27,066 | INFO | normalize_met_buoy |   Dropping fully-empty columns: ['visibility', 'tide']
+2026-03-16 15:27:27,449 | INFO | normalize_met_buoy |   Signals prepared: 6507
+2026-03-16 15:27:33,716 | INFO | normalize_met_buoy |   ✅ Inserted 6507 signals from meteorological buoy 51001.
+2026-03-16 15:27:33,717 | INFO | pipeline | 
+--- ATAL JAL Groundwater ---
+2026-03-16 15:27:33,717 | INFO | normalize_groundwater | Loading groundwater file: C:\unified_geospatial_pipeline\src\..\data_raw\Atal_Jal_Disclosed_Ground_Water_Level-2015-2022.csv
+2026-03-16 15:27:33,750 | INFO | normalize_groundwater |   Raw rows (wells) loaded: 5490
+2026-03-16 15:27:33,750 | INFO | normalize_groundwater |   Seasonal columns found: 16
+2026-03-16 15:27:33,781 | INFO | normalize_groundwater |   Rows after melt (well × season): 87840
+2026-03-16 15:27:40,998 | INFO | normalize_groundwater |   Signals prepared : 87840
+2026-03-16 15:27:40,998 | INFO | normalize_groundwater |   Skipped (no coords)    : 0
+2026-03-16 15:27:40,998 | INFO | normalize_groundwater |   Skipped (no timestamp) : 0
+2026-03-16 15:29:05,950 | INFO | normalize_groundwater |   ✅ Inserted 87840 signals from groundwater dataset.
+2026-03-16 15:29:05,983 | INFO | pipeline | 
+============================================================
+2026-03-16 15:29:05,983 | INFO | pipeline |   PIPELINE COMPLETE — SUMMARY
+2026-03-16 15:29:05,983 | INFO | pipeline | ============================================================
+2026-03-16 15:29:05,991 | INFO | pipeline |   drifting_buoy             →   1091 signals inserted
+2026-03-16 15:29:05,991 | INFO | pipeline |   met_buoy_51001            →   6507 signals inserted
+2026-03-16 15:29:05,991 | INFO | pipeline |   groundwater               →  87840 signals inserted
+2026-03-16 15:29:05,991 | INFO | pipeline |   TOTAL                     →  95438 signals in marine_signals
+2026-03-16 15:29:05,991 | INFO | pipeline | ============================================================

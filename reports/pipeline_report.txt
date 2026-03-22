@@ -1,9 +1,9 @@
 UNIFIED GEOSPATIAL SIGNAL PIPELINE REPORT
 ==================================================
-Execution Time: 2026-03-17 20:23:16.325458
+Execution Time: 2026-03-23 00:11:51.049320
 
 drifting_buoy: 1091 signals inserted
 met_buoy_51001: 6507 signals inserted
-groundwater: 87840 signals inserted
+groundwater: 87792 signals inserted
 
-TOTAL SIGNALS INSERTED: 95438
+TOTAL SIGNALS INSERTED: 95390

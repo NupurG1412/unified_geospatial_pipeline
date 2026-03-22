@@ -3,7 +3,7 @@ import sys
 import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 
-from sqlalchemy import text
+
 from src.db_connect import get_engine
 from src.logger import get_logger
 
@@ -22,9 +22,9 @@ def _season_to_timestamp(col_name: str) -> str | None:
         season = parts[0].lower()                        # "pre-monsoon" or "post-monsoon"
 
         if "pre" in season:
-            return pd.Timestamp(year=year, month=6,  day=1).isoformat()
+            return pd.Timestamp(year=year, month=6,  day=1)
         elif "post" in season:
-            return pd.Timestamp(year=year, month=11, day=1).isoformat()
+            return pd.Timestamp(year=year, month=11, day=1)
         else:
             return None
     except Exception:
@@ -42,8 +42,7 @@ def normalize_groundwater(filepath: str, dataset_id: int) -> int:
     logger.info(f"  Seasonal columns found: {len(season_cols)}")
 
     # ID columns to keep per well
-    id_cols = ["Well_ID", "Latitude", "Longitude", "Site_Name",
-               "State_Name_With_LGD_Code", "Aquifer"]
+    id_cols = ["Well_ID", "Latitude", "Longitude"]
 
     # Melt: wide → long
     df_long = df[id_cols + season_cols].melt(
@@ -54,90 +53,88 @@ def normalize_groundwater(filepath: str, dataset_id: int) -> int:
     )
     logger.info(f"  Rows after melt (well  season): {len(df_long)}")
 
-    signals = []
-    skipped_no_coords  = 0
-    skipped_no_timestamp = 0
+    # Drop rows without coordinates
+    df_long = df_long.dropna(subset=["Latitude", "Longitude"])
+    
+    # Timestamp
+    df_long["timestamp"] = df_long["season_label"].apply(_season_to_timestamp)
 
-    for _, row in df_long.iterrows():
-        # --- Coordinates ---
-        lat = row.get("Latitude")
-        lon = row.get("Longitude")
-        if pd.isna(lat) or pd.isna(lon):
-            skipped_no_coords += 1
-            continue
+    # Drop invalid timestamps
+    df_long = df_long.dropna(subset=["timestamp"])
 
-        # --- Timestamp from season column name ---
-        timestamp = _season_to_timestamp(row["season_label"])
-        if timestamp is None:
-            skipped_no_timestamp += 1
-            continue
+    # Normalize values
+    def clean_value(val):
+        if pd.isna(val) or str(val).strip().lower() == "dry":
+            return None
+        try:
+            return float(val)
+        except:
+            return None
+        
+    df_long["normalized_value"] = df_long["raw_value"].apply(clean_value)
 
-        # --- Normalized value ---
-        # "Dry" = well was dry that season → NULL (not 0, not filled)
-        # NaN   = not measured             → NULL
-        raw_val = row.get("raw_value")
-        if pd.isna(raw_val) or str(raw_val).strip().lower() == "dry":
-            normalized_value = None
-        else:
-            try:
-                normalized_value = float(raw_val)
-            except (ValueError, TypeError):
-                normalized_value = None
+    # Source ID
+    df_long["source_id"] = (
+        df_long["Well_ID"].astype(str) + "_" +
+        df_long["season_label"].str.replace(r"[^\w]", "", regex=True)
+    )
 
-        # Compact season label for source_id e.g. "pre_2015"
-        short_season = row["season_label"].split("(")[0].strip()\
-                                          .replace("-monsoon_", "_")\
-                                          .replace("Pre_", "pre_")\
-                                          .replace("Post_", "post_")\
-                                          .lower()
+    # Feature type
+    df_long["feature_type"] = "groundwater_level"
 
-        source_id = f"{row['Well_ID']}_{short_season}"
+    # Source reference
+    df_long["source_reference"] = SOURCE_REF
 
-        signals.append({
-            "source_id":        source_id,
-            "timestamp":        timestamp,
-            "latitude":         float(lat),
-            "longitude":        float(lon),
-            "feature_type":     "groundwater_level",
-            "normalized_value": normalized_value,
-            "source_reference": SOURCE_REF,
-            "dataset_id":       dataset_id
-        })
+    # Dataset ID
+    df_long["dataset_id"] = dataset_id
 
-    logger.info(f"  Signals prepared : {len(signals)}")
-    logger.info(f"  Skipped (no coords)    : {skipped_no_coords}")
-    logger.info(f"  Skipped (no timestamp) : {skipped_no_timestamp}")
+    # Rename columns
+    df_long.rename(columns={
+        "Latitude": "latitude",
+        "Longitude": "longitude"
+    }, inplace=True)
 
-    if not signals:
-        logger.warning("  No valid signals to insert.")
+    # Confidence score (rule-based)
+    df_long["confidence_score"] = 0.9  # government dataset
+
+    # Geometry column
+    df_long["geom"] = df_long.apply(
+        lambda row: f"POINT({row['longitude']} {row['latitude']})",
+        axis=1
+    )
+
+    # Selecting final columns
+    final_cols = [
+        "source_id", "timestamp", "latitude", "longitude",
+        "geom", "feature_type", "normalized_value",
+        "source_reference", "dataset_id", "confidence_score"
+    ]
+
+    df_final = df_long[final_cols]
+
+    logger.info(f"Final signals ready: {len(df_final)}")
+
+    if df_final.empty:
+        logger.warning("No valid signals to insert.")
         return 0
-
+    
     engine = get_engine()
-    inserted = 0
 
-    with engine.connect() as conn:
-        for sig in signals:
-            conn.execute(
-                text("""
-                    INSERT INTO marine_signals
-                        (source_id, timestamp, latitude, longitude, geom,
-                         feature_type, normalized_value, source_reference, dataset_id)
-                    VALUES (
-                        :source_id,
-                        :timestamp,
-                        :latitude,
-                        :longitude,
-                        ST_SetSRID(ST_MakePoint(:longitude, :latitude), 4326)::geography,
-                        :feature_type,
-                        :normalized_value,
-                        :source_reference,
-                        :dataset_id
-                    )
-                """),
-                sig
-            )
-            inserted += 1
-        conn.commit()
+    df_final = df_final.drop_duplicates(
+    subset=["source_id", "timestamp", "latitude", "longitude", "feature_type"]
+    )
 
-    logger.info(f" Inserted {inserted} signals from groundwater dataset.")
-    return inserted
+    # BATCH INSERT
+    df_final.to_sql(
+        "marine_signals",
+        engine,
+        if_exists="append",
+        index=False,
+        method="multi",
+        chunksize=2000
+    )
+
+    logger.info(f"Inserted {len(df_final)} groundwater signals")
+
+    return len(df_final)
+

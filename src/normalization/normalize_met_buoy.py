@@ -3,7 +3,7 @@ import sys
 import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 
-from sqlalchemy import text
+
 from src.db_connect import get_engine
 from src.logger import get_logger
 
@@ -20,84 +20,80 @@ def normalize_met_buoy(filepath: str, dataset_id: int) -> int:
     df = pd.read_csv(filepath)
     logger.info(f"  Raw rows loaded: {len(df)}")
 
-    # Drop fully-empty columns 
-    empty_cols = [col for col in df.columns if df[col].isna().all()]
-    if empty_cols:
-        logger.info(f"  Dropping fully-empty columns: {empty_cols}")
-        df.drop(columns=empty_cols, inplace=True)
+    # Drop empty columns
+    df = df.dropna(axis=1, how="all")
 
-    signals = []
+    # Ensure timestamp
+    df = df.dropna(subset=["timestamp"])
 
-    for _, row in df.iterrows():
-        # --- Timestamp ---
-        raw_ts = row.get("timestamp")
-        if pd.isna(raw_ts) or str(raw_ts).strip() == "":
-            logger.warning("  Skipping row with missing timestamp.")
-            continue
+    def parse_ts(val):
         try:
-            timestamp = pd.Timestamp(raw_ts).isoformat()
-        except Exception:
-            logger.warning(f"  Skipping unparseable timestamp: {raw_ts}")
-            continue
+            return pd.Timestamp(val)
+        except:
+            return None
 
-        # --- Normalized value: water_temp ---
-        # NaN kept as NULL 
-        raw_val = row.get("water_temp")
-        if pd.isna(raw_val):
-            normalized_value = None
-        else:
-            try:
-                normalized_value = float(raw_val)
-            except (ValueError, TypeError):
-                normalized_value = None
+    df["timestamp"] = df["timestamp"].apply(parse_ts)
+    df = df.dropna(subset=["timestamp"])
 
-        source_id = f"NOAA_51001_{timestamp}"
+    # Normalize value
+    def clean_value(val):
+        if pd.isna(val):
+            return None
+        try:
+            return float(val)
+        except:
+            return None
+        
+    df["normalized_value"] = df["water_temp"].apply(clean_value)
 
-        signals.append({
-            "source_id":        source_id,
-            "timestamp":        timestamp,
-            "latitude":         BUOY_51001_LAT,
-            "longitude":        BUOY_51001_LON,
-            "feature_type":     "meteorological_buoy_reading",
-            "normalized_value": normalized_value,
-            "source_reference": BUOY_51001_REF,
-            "dataset_id":       dataset_id
-        })
+    # Columns
+    df["source_id"] = "NOAA_51001_" + df["timestamp"].astype(str)
+    df["latitude"] = BUOY_51001_LAT
+    df["longitude"] = BUOY_51001_LON
 
-    logger.info(f"  Signals prepared: {len(signals)}")
+    df["feature_type"] = "meteorological_buoy_reading"
+    df["source_reference"] = BUOY_51001_REF
+    df["dataset_id"] = dataset_id
 
-    if not signals:
-        logger.warning("  No valid signals to insert.")
+    # Confidence
+    df["confidence_score"] = 0.85
+
+    # Geometry
+    df["geom"] = df.apply(
+        lambda row: f"POINT({row['longitude']} {row['latitude']})",
+        axis=1
+    )
+
+    # Final columns
+    final_cols = [
+        "source_id", "timestamp", "latitude", "longitude",
+        "geom", "feature_type", "normalized_value",
+        "source_reference", "dataset_id", "confidence_score"
+    ]
+
+    df_final = df[final_cols]
+
+    if df_final.empty:
+        logger.warning("No valid meteorological buoy signals.")
         return 0
 
     engine = get_engine()
-    inserted = 0
 
-    with engine.connect() as conn:
-        for sig in signals:
-            conn.execute(
-                text("""
-                    INSERT INTO marine_signals
-                        (source_id, timestamp, latitude, longitude, geom,
-                         feature_type, normalized_value, source_reference, dataset_id)
-                    VALUES (
-                        :source_id,
-                        :timestamp,
-                        :latitude,
-                        :longitude,
-                        ST_SetSRID(ST_MakePoint(:longitude, :latitude), 4326)::geography,
-                        :feature_type,
-                        :normalized_value,
-                        :source_reference,
-                        :dataset_id
-                    )
-                """),
-                sig
-            )
-            inserted += 1
-        conn.commit()
+    df_final = df_final.drop_duplicates(
+    subset=["source_id", "timestamp", "latitude", "longitude", "feature_type"]
+    )
+    
+    # BATCH INSERT
+    df_final.to_sql(
+        "marine_signals",
+        engine,
+        if_exists="append",
+        index=False,
+        method="multi",
+        chunksize=2000
+    )
 
-    print(f"Inserted {inserted} meteorological buoy signals")
+    logger.info(f"Inserted {len(df_final)} meteorological buoy signals")
 
-    logger.info(f"  Inserted {inserted} signals from meteorological buoy 51001.")
-    return inserted
+    return len(df_final)
+    
